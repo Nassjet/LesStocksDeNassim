@@ -1,24 +1,14 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Dashboard Admin{% endblock %}
+{% block title %}Tableau de bord Admin{% endblock %}
 
 {% block body %}
-<style>
-    .dashboard-section { margin: 2em auto; max-width: 800px; }
-</style>
+<h1>Tableau de bord Administrateur</h1>
 
-<div class="dashboard-section">
-    <h1>Tableau de bord</h1>
-
-    {% for message in app.flashes('success') %}
-        <div class="alert alert-success">{{ message }}</div>
-    {% endfor %}
-
-    <h2>Ajouter une catégorie</h2>
-    {{ form_start(formCategorie) }}
-        {{ form_row(formCategorie.name) }}
-        {{ form_row(formCategorie.description) }}
-        <button class="btn btn-primary">Ajouter</button>
-    {{ form_end(formCategorie) }}
-</div>
+<ul>
+    <li><a href="{{ path('app_categorie_new') }}">➕ Ajouter une catégorie</a></li>
+    <li><a href="{{ path('app_produit_new') }}">➕ Ajouter un produit</a></li>
+    <li><a href="{{ path('app_categorie_index') }}">📂 Gérer les catégories</a></li>
+    <li><a href="{{ path('app_produit_index') }}">📦 Gérer les produits</a></li>
+</ul>
 {% endblock %}
