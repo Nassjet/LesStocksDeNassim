@@ -1,6 +1,9 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}S'inscrire{% endblock %}
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('styles/registration/register.css') }}">
+{% endblock %}
 
 {% block body %}
     <div class="form-container">
@@ -19,7 +22,7 @@
         {{ form_end(registrationForm) }}
 
         <div class="small-text">
-            <p>Déjà inscrit ? <a href= >Se connecter</a></p>
+            <p>Déjà inscrit ? <a href= "{{ path('app_login') }}">Se connecter</a></p>
         </div>
     </div>
 {% endblock %}

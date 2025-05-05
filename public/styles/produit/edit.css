@@ -1,0 +1,87 @@
+/* Centrage total de la page */
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #000;
+    color: #fff;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+  
+  /* Titre */
+  h1 {
+    margin-bottom: 1.5rem;
+    text-align: center;
+  }
+  
+  /* Conteneur global du formulaire */
+  .form-wrapper {
+    background-color: #111;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.05);
+    width: 100%;
+    max-width: 400px;
+  }
+  
+  /* Style des champs */
+  form label {
+    display: block;
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  form input,
+  form select,
+  form textarea {
+    width: 100%;
+    padding: 0.5rem;
+    background-color: #222;
+    color: #fff;
+    border: 1px solid #444;
+    border-radius: 5px;
+    box-sizing: border-box;
+  }
+  
+  /* Boutons */
+  form button {
+    margin-top: 1.5rem;
+    padding: 0.5rem 1rem;
+    background-color: #fff;
+    color: #000;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+  }
+  
+  form button:hover {
+    background-color: #ddd;
+  }
+  
+  /* Lien retour */
+  a {
+    margin-top: 1rem;
+    color: #ccc;
+    text-decoration: none;
+    display: inline-block;
+    text-align: center;
+  }
+  
+  a:hover {
+    color: #fff;
+  }
+  
+  /* Bouton delete */
+  .delete-form {
+    margin-top: 1rem;
+  }
+  
+  .delete-form form {
+    text-align: center;
+  }
+  

@@ -15,13 +15,13 @@ class Media
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $Type = null;
+    private ?string $type = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $Path = null;
+    private ?string $path = null;
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
-    private ?string $Alt = null;
+    private ?string $alt = null;
 
     #[ORM\ManyToOne(inversedBy: 'media')]
     #[ORM\JoinColumn(nullable: false)]

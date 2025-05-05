@@ -1,6 +1,10 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Accueil
+{% block title %}Accueil{% endblock %}
+
+{% block stylesheets %}
+	{{ parent() }}
+	<link rel="stylesheet" href="{{ asset('styles/base.css') }}">
 {% endblock %}
 
 {% block body %}
@@ -8,9 +12,35 @@
 		<h1>Bienvenue sur Les Stocks de Nassim</h1>
 		<p>Cette boutique est en cours de développement. Restez connectés !</p>
 	</div>
+
 	<button>
 		<a href="{{ path('app_login') }}">Connexion</a>
 	</button>
 	<button>
-		<a href="{{ path('app_register') }}">S'inscrire</button>
-	{% endblock %}
+		<a href="{{ path('app_register') }}">S'inscrire</a>
+	</button>
+
+	<h1>Liste des Produits</h1>
+
+	<div class="produits">
+		{% for produit in produits %}
+			<div class="produit-card">
+				<h2>{{ produit.name }}</h2>
+				<p>{{ produit.description }}</p>
+				<p>
+					<strong>Prix :</strong>
+					{{ produit.prix }}
+					€</p>
+				<p>
+					<strong>Disponible :</strong>
+					{{ produit.available ? 'Oui' : 'Non' }}</p>
+				{% if produit.media and produit.media|length > 0 %}
+					<img src="{{ asset('uploads/images/' ~ produit.media[0].filename) }}" alt="{{ produit.name }}" width="200">
+				{% endif %}
+			</div>
+			<a href ="{{ path('app_cart_add' , {id: produit.id}) }}">Ajouter au panier</a>
+		{% else %}
+			<p>Aucun produit disponible.</p>
+		{% endfor %}
+	</div>
+{% endblock %}

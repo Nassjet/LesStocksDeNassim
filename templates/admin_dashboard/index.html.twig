@@ -2,13 +2,35 @@
 
 {% block title %}Tableau de bord Admin{% endblock %}
 
-{% block body %}
-<h1>Tableau de bord Administrateur</h1>
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('styles/admin_dashboard/index.css') }}">
+{% endblock %}
 
-<ul>
-    <li><a href="{{ path('app_categorie_new') }}">➕ Ajouter une catégorie</a></li>
-    <li><a href="{{ path('app_produit_new') }}">➕ Ajouter un produit</a></li>
-    <li><a href="{{ path('app_categorie_index') }}">📂 Gérer les catégories</a></li>
-    <li><a href="{{ path('app_produit_index') }}">📦 Gérer les produits</a></li>
-</ul>
+{% block body %}
+<div class="admin-dashboard">
+    <h1 class="dashboard-title">Tableau de bord Administrateur</h1>
+
+    <div class="dashboard-grid">
+        <a href="{{ path('app_categorie_new') }}" class="dashboard-card">
+            <div class="emoji">➕</div>
+            <p>Ajouter une catégorie</p>
+        </a>
+
+        <a href="{{ path('app_produit_new') }}" class="dashboard-card">
+            <div class="emoji">➕</div>
+            <p>Ajouter un produit</p>
+        </a>
+
+        <a href="{{ path('app_categorie_index') }}" class="dashboard-card">
+            <div class="emoji">📂</div>
+            <p>Gérer les catégories</p>
+        </a>
+
+        <a href="{{ path('app_produit_index') }}" class="dashboard-card">
+            <div class="emoji">📦</div>
+            <p>Gérer les produits</p>
+        </a>
+    </div>
+</div>
 {% endblock %}
