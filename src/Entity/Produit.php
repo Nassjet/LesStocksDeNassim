@@ -33,12 +33,6 @@ class Produit
     private ?Categorie $categorie = null;
 
     /**
-     * @var Collection<int, Media>
-     */
-    #[ORM\OneToMany(targetEntity: Media::class, mappedBy: 'produit')]
-    private Collection $media;
-
-    /**
      * @var Collection<int, CommandLine>
      */
     #[ORM\OneToMany(targetEntity: CommandLine::class, mappedBy: 'produit')]
@@ -46,7 +40,6 @@ class Produit
 
     public function __construct()
     {
-        $this->media = new ArrayCollection();
         $this->commandLines = new ArrayCollection();
     }
 
@@ -114,37 +107,21 @@ class Produit
 
         return $this;
     }
-
-    /**
-     * @return Collection<int, Media>
-     */
-    public function getMedia(): Collection
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $image = null;
+    
+    public function getImage(): ?string
     {
-        return $this->media;
+        return $this->image;
     }
-
-    public function addMedium(Media $medium): static
+    
+    public function setImage(?string $image): static
     {
-        if (!$this->media->contains($medium)) {
-            $this->media->add($medium);
-            $medium->setProduit($this);
-        }
-
+        $this->image = $image;
+    
         return $this;
     }
-
-    public function removeMedium(Media $medium): static
-    {
-        if ($this->media->removeElement($medium)) {
-            // set the owning side to null (unless already changed)
-            if ($medium->getProduit() === $this) {
-                $medium->setProduit(null);
-            }
-        }
-
-        return $this;
-    }
-
+    
     /**
      * @return Collection<int, CommandLine>
      */

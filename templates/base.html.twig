@@ -1,16 +1,25 @@
 <!DOCTYPE html>
-<html lang="fr">
-	<head>
-		<meta charset="UTF-8">
-		<title>
-			{% block title %}Mon Site
-			{% endblock %}
-		</title>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Les Stocks de Nassim{% endblock %}</title>
+    {% block stylesheets %}
+        <link rel="stylesheet" href="{{ asset('styles/base.css') }}">
+    {% endblock %}
+</head>
 
-		<link rel="stylesheet" href="{{ asset('styles/base.css') }}"> {% block stylesheets %}{% endblock %}
-		</head>
-		<body>
-			{% block body %}{% endblock %}
-		</body>
+    <header class="main-header">
+        <div class="brand">
+            <a href="{{ path('app_home') }}">Les Stocks de Nassim</a>
+        </div>
+        <nav class="auth-links">
+            <a href="{{ path('app_login') }}">Connexion</a>
+            <a href="{{ path('app_register') }}">S'inscrire</a>
+        </nav>
+    </header>
 
-	</html>
+    {% block body %}{% endblock %}
+
+    {% block javascripts %}{% endblock %}
+
+</html>

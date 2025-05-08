@@ -28,16 +28,10 @@ class Categorie
     #[ORM\OneToMany(targetEntity: Produit::class, mappedBy: 'categorie')]
     private Collection $produits;
 
-    /**
-     * @var Collection<int, Media>
-     */
-    #[ORM\OneToMany(targetEntity: Media::class, mappedBy: 'categorie')]
-    private Collection $media;
-
     public function __construct()
     {
         $this->produits = new ArrayCollection();
-        $this->media = new ArrayCollection();
+
     }
 
     public function getId(): ?int
@@ -68,6 +62,22 @@ class Categorie
 
         return $this;
     }
+    
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $image = null;
+    
+    public function getImage(): ?string
+    {
+        return $this->image;
+    }
+    
+    public function setImage(?string $image): static
+    {
+        $this->image = $image;
+    
+        return $this;
+    }
+    
 
     /**
      * @return Collection<int, Produit>
@@ -93,36 +103,6 @@ class Categorie
             // set the owning side to null (unless already changed)
             if ($produit->getCategorie() === $this) {
                 $produit->setCategorie(null);
-            }
-        }
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, Media>
-     */
-    public function getMedia(): Collection
-    {
-        return $this->media;
-    }
-
-    public function addMedium(Media $medium): static
-    {
-        if (!$this->media->contains($medium)) {
-            $this->media->add($medium);
-            $medium->setCategorie($this);
-        }
-
-        return $this;
-    }
-
-    public function removeMedium(Media $medium): static
-    {
-        if ($this->media->removeElement($medium)) {
-            // set the owning side to null (unless already changed)
-            if ($medium->getCategorie() === $this) {
-                $medium->setCategorie(null);
             }
         }
 
