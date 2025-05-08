@@ -8,6 +8,8 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use App\Entity\Categorie;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Validator\Constraints\File;
 
 class ProduitType extends AbstractType
 {
@@ -24,6 +26,22 @@ class ProduitType extends AbstractType
                 'label' => 'Catégorie',
                 'placeholder' => 'Choisissez une catégorie',
             ])
+            ->add('image', FileType::class, [
+                'label' => 'Image du produit (JPG, PNG)',
+                'mapped' => false, 
+                'required' => false,
+                'constraints' => [
+                    new File([
+                        'maxSize' => '2M',
+                        'mimeTypes' => [
+                            'image/jpeg',
+                            'image/png',
+                            'image/webp',
+                        ],
+                        'mimeTypesMessage' => 'Format d\'image non valide',
+                    ])
+                ],
+            ]);
         ;
     }
 

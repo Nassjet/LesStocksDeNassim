@@ -8,18 +8,28 @@
     {% endblock %}
 </head>
 
+<body>
     <header class="main-header">
         <div class="brand">
             <a href="{{ path('app_home') }}">Les Stocks de Nassim</a>
         </div>
+
         <nav class="auth-links">
-            <a href="{{ path('app_login') }}">Connexion</a>
-            <a href="{{ path('app_register') }}">S'inscrire</a>
+            {% if app.user %}
+                <span>Bonjour {{ app.user.name }} !</span>
+                <a href="{{ path('app_logout') }}">Déconnexion</a>
+
+                {% if is_granted('ROLE_ADMIN') %}
+                    <a href="{{ path('admin_dashboard') }}" class="admin-button">Dashboard Administrateur</a>
+                {% endif %}
+            {% else %}
+                <a href="{{ path('app_login') }}">Connexion</a>
+                <a href="{{ path('app_register') }}">S'inscrire</a>
+            {% endif %}
         </nav>
     </header>
 
     {% block body %}{% endblock %}
-
     {% block javascripts %}{% endblock %}
-
+</body>
 </html>

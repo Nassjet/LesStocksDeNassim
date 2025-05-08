@@ -2,6 +2,7 @@
 
 {% block title %}New Produit{% endblock %}
 {% block stylesheets %}
+	{{ parent() }}
     <link rel="stylesheet" href="{{ asset('styles/produit/new.css') }}">
 {% endblock %}
 {% block body %}

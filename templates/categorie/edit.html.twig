@@ -1,5 +1,11 @@
 {% extends 'base.html.twig' %}
 
+{% block stylesheets %}
+	{{ parent() }}
+	<link rel="stylesheet" href="{{ asset('styles/base.css') }}">
+	<link rel="stylesheet" href="{{ asset('styles/categorie/edit.css') }}">
+{% endblock %}
+
 {% block title %}Edit Categorie{% endblock %}
 
 {% block body %}

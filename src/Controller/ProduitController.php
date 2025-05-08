@@ -10,6 +10,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\String\Slugger\SluggerInterface;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 #[Route('/produit')]
 final class ProduitController extends AbstractController
@@ -23,19 +25,35 @@ final class ProduitController extends AbstractController
     }
 
     #[Route('/new', name: 'app_produit_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, EntityManagerInterface $entityManager): Response
+    public function new(Request $request, EntityManagerInterface $entityManager, SluggerInterface $slugger): Response
     {
         $produit = new Produit();
         $form = $this->createForm(ProduitType::class, $produit);
         $form->handleRequest($request);
-
+    
         if ($form->isSubmitted() && $form->isValid()) {
+            $imageFile = $form->get('image')->getData();
+
+            if ($imageFile) {
+                $originalFilename = pathinfo($imageFile->getClientOriginalName(), PATHINFO_FILENAME);
+                $safeFilename = $slugger->slug($originalFilename);
+                $newFilename = $safeFilename . '-' . uniqid() . '.' . $imageFile->guessExtension();
+            
+                // déplace dans /public/assets/
+                $imageFile->move(
+                    $this->getParameter('kernel.project_dir') . '/public/uploads/images',
+                    $newFilename
+                );
+            
+                $produit->setImage($newFilename);
+            }
+    
             $entityManager->persist($produit);
             $entityManager->flush();
-
+    
             return $this->redirectToRoute('app_produit_index', [], Response::HTTP_SEE_OTHER);
         }
-
+    
         return $this->render('produit/new.html.twig', [
             'produit' => $produit,
             'form' => $form,
@@ -49,29 +67,46 @@ final class ProduitController extends AbstractController
             'produit' => $produit,
         ]);
     }
-
+    
     #[Route('/{id}/edit', name: 'app_produit_edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, Produit $produit, EntityManagerInterface $entityManager): Response
+    public function edit(Request $request, Produit $produit, EntityManagerInterface $entityManager, SluggerInterface $slugger): Response
     {
         $form = $this->createForm(ProduitType::class, $produit);
         $form->handleRequest($request);
-
+    
         if ($form->isSubmitted() && $form->isValid()) {
+            /** @var UploadedFile $imageFile */
+            $imageFile = $form->get('image')->getData();
+    
+            if ($imageFile) {
+                $originalFilename = pathinfo($imageFile->getClientOriginalName(), PATHINFO_FILENAME);
+                $safeFilename = $slugger->slug($originalFilename);
+                $newFilename = $safeFilename.'-'.uniqid().'.'.$imageFile->guessExtension();
+    
+                $imageFile->move(
+                    $this->getParameter('images_directory'),
+                    $newFilename
+                );
+    
+                $produit->setImage($newFilename);
+            }
+    
             $entityManager->flush();
-
+    
             return $this->redirectToRoute('app_produit_index', [], Response::HTTP_SEE_OTHER);
         }
-
+    
         return $this->render('produit/edit.html.twig', [
             'produit' => $produit,
             'form' => $form,
         ]);
     }
+    
 
     #[Route('/{id}', name: 'app_produit_delete', methods: ['POST'])]
     public function delete(Request $request, Produit $produit, EntityManagerInterface $entityManager): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$produit->getId(), $request->getPayload()->getString('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $produit->getId(), $request->getPayload()->getString('_token'))) {
             $entityManager->remove($produit);
             $entityManager->flush();
         }

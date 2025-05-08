@@ -5,29 +5,34 @@
 {% block stylesheets %}
 	{{ parent() }}
 	<link rel="stylesheet" href="{{ asset('styles/base.css') }}">
+	<link rel="stylesheet" href="{{ asset('styles/home/index.css') }}">
 {% endblock %}
 
 {% block body %}
+	<h1>Notre catalogue</h1>
 
-	<h1>Liste des Produits</h1>
-
-	<div class="produits">
+	<div class="produits-grid">
 		{% for produit in produits %}
 			<div class="produit-card">
-				<h2>{{ produit.name }}</h2>
-				<p>{{ produit.description }}</p>
-				<p>
-					<strong>Prix :</strong>
-					{{ produit.prix }}
-					€</p>
-				<p>
-					<strong>Disponible :</strong>
-					{{ produit.available ? 'Oui' : 'Non' }}</p>
-				{% if produit.media and produit.media|length > 0 %}
-					<img src="{{ asset('uploads/images/' ~ produit.media[0].filename) }}" alt="{{ produit.name }}" width="200">
+				{% if produit.image %}
+					<img src="{{ asset('uploads/images/' ~ produit.image) }}" alt="{{ produit.name }}">
 				{% endif %}
+
+				<div class="card-header">
+					<h2>{{ produit.name }}</h2>
+					<span class="prix">{{ produit.prix }} €</span>
+				</div>
+
+				<details>
+					<summary>Description</summary>
+					<p>{{ produit.description }}</p>
+				</details>
+
+				<div class="card-footer">
+					<span class="dispo">{{ produit.available ? 'Disponible' : 'Indisponible' }}</span>
+					<a href="{{ path('cart_add', {'id': produit.id}) }}" class="add-to-cart">Ajouter au panier</a>
+				</div>
 			</div>
-			<a href ="{{ path('cart_add' , {id: produit.id}) }}">Ajouter au panier</a>
 		{% else %}
 			<p>Aucun produit disponible.</p>
 		{% endfor %}
