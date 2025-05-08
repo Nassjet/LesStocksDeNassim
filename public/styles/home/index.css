@@ -1,110 +1,138 @@
 body {
-	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-	background-color: #f5f7fa;
-	margin: 0;
-	padding: 0;
-	color: #333;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #000;
+    /* Fond noir */
+    margin: 0;
+    padding: 0;
+    color: #333;
 }
 
 h1 {
-	text-align: center;
-	margin: 2rem 0;
-	font-size: 2.5rem;
-	color: #2c3e50;
+    text-align: center;
+    margin: 2rem 0;
+    font-size: 2.5rem;
+    color: #fff;
 }
 
+
 .produits-grid {
-	display: grid;
-	grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-	gap: 2rem;
-	padding: 2rem 5%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    justify-content: center;
+    padding: 2rem;
 }
 
 .produit-card {
-	border: 1px solid #dcdde1;
-	border-radius: 12px;
-	box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
-	background-color: #ffffff;
-	overflow: hidden;
-	display: flex;
-	flex-direction: column;
-	transition: transform 0.2s ease-in-out, box-shadow 0.2s;
+    width: 320px;
+    background-color: #fff;
+    color: #000;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 1rem;
+    transition: transform 0.2s, box-shadow 0.2s;
+    margin-inline: 1rem;
+    /* Ajout de marges gauche/droite */
 }
 
 .produit-card:hover {
-	transform: translateY(-6px);
-	box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+    transform: translateY(-6px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
 }
 
-.produit-card img {
-	width: 100%;
-	height: 200px;
-	object-fit: cover;
-	border-bottom: 1px solid #eee;
+.produit-card .image-container {
+    width: 300px;
+    height: 300px;
+    background-color: #f0f0f0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    margin-top: 1rem;
+    border-radius: 8px;
+}
+
+.produit-card .image-container img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    display: block;
 }
 
 .card-header {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	padding: 1rem;
-	background-color: #f9f9f9;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-left: 1rem;
+    width: 100%;
 }
 
 .card-header h2 {
-	margin: 0;
-	font-size: 1.1rem;
-	color: #34495e;
+    margin: 0;
+    font-size: 1.1rem;
+    color: #34495e;
 }
 
 .prix {
-	font-weight: bold;
-	color: #e67e22;
-	font-size: 1rem;
+    font-weight: bold;
+    color: #e67e22;
+    font-size: 1rem;
+    margin-right: 1rem;
 }
 
 details {
-	padding: 0 1rem;
-	margin: 0.5rem 0;
-	color: #555;
+    padding: 0 1rem;
+    margin: 0.5rem 0;
+    color: #555;
+    width: 100%;
+    margin-left: 1rem;
 }
 
 details summary {
-	cursor: pointer;
-	font-weight: bold;
-	margin-bottom: 0.5rem;
-	color: #2980b9;
+    cursor: pointer;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    color: #2980b9;
 }
 
 .card-footer {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	padding: 1rem;
-	margin-top: auto;
-	border-top: 1px solid #eee;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 1rem;
+    /* Marge interne gauche/droite */
+    margin-top: auto;
+    border-top: 1px solid #eee;
+    width: 100%;
 }
 
 .dispo {
-	font-size: 0.9rem;
-	color: #2ecc71;
+    font-size: 0.9rem;
+    color: #2ecc71;
+    margin-left: 1rem;
 }
 
 .dispo::before {
-	content: '● ';
-	color: #2ecc71;
+    content: '● ';
+    color: #2ecc71;
 }
 
 .add-to-cart {
-	background-color: #3498db;
-	color: white;
-	padding: 0.5rem 1rem;
-	border-radius: 6px;
-	text-decoration: none;
-	font-size: 0.95rem;
-	transition: background-color 0.2s;
+    background-color: #3498db;
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 0.95rem;
+    transition: background-color 0.2s;
+    margin-right: 0.5rem;
+    /* espace par rapport à dispo */
 }
 
 .add-to-cart:hover {
-	background-color: #217dbb;
+    background-color: #217dbb;
 }

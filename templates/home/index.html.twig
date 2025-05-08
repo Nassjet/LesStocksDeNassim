@@ -1,6 +1,7 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Accueil{% endblock %}
+{% block title %}Accueil
+{% endblock %}
 
 {% block stylesheets %}
 	{{ parent() }}
@@ -14,20 +15,23 @@
 	<div class="produits-grid">
 		{% for produit in produits %}
 			<div class="produit-card">
-				{% if produit.image %}
-					<img src="{{ asset('uploads/images/' ~ produit.image) }}" alt="{{ produit.name }}">
-				{% endif %}
-
+				<div class="image-container">
+					{% if produit.image is not empty %}
+						<a href="{{ path('app_produit_show', {'id': produit.id}) }}">
+							<img src="{{ asset('uploads/images/' ~ produit.image) }}" alt="{{ produit.name|e }}"/>
+						</a>
+					{% else %}
+						<p>Aucune image disponible</p>
+					{% endif %}
+				</div>
 				<div class="card-header">
 					<h2>{{ produit.name }}</h2>
-					<span class="prix">{{ produit.prix }} €</span>
+					<span class="prix">{{ produit.prix }}€</span>
 				</div>
-
 				<details>
 					<summary>Description</summary>
 					<p>{{ produit.description }}</p>
 				</details>
-
 				<div class="card-footer">
 					<span class="dispo">{{ produit.available ? 'Disponible' : 'Indisponible' }}</span>
 					<a href="{{ path('cart_add', {'id': produit.id}) }}" class="add-to-cart">Ajouter au panier</a>
