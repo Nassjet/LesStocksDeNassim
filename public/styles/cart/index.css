@@ -1,100 +1,149 @@
-/* Global */
+/* styles/cart/index.css */
+
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #111;
-    color: #fff;
-    margin: 0;
+    background-color: #121212;
+    color: #ffffff;
+    font-family: 'Roboto', sans-serif;
     padding: 0;
+    margin: 0;
 }
 
 .container {
+    padding: 2rem 1rem;
     max-width: 1200px;
-    margin: 40px auto;
-    padding: 0 20px;
+    margin: 0 auto;
 }
 
-/* Titres */
-h1, h2 {
-    color: #fff;
-    border-bottom: 1px solid #444;
-    padding-bottom: 8px;
-    margin-top: 30px;
+h1 {
+    color: #ffffff;
+    text-align: center;
+    margin-bottom: 2.5rem;
+    font-weight: 400;
+    font-size: 2.2rem;
 }
 
-/* Paragraphes */
-p {
-    font-size: 1rem;
-    color: #ccc;
-    margin: 0.5em 0;
+.table-wrapper {
+    overflow-x: auto;
+    background-color: #1e1e1e;
+    border-radius: 10px;
+    padding: 1px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
 }
 
-/* Boutons noirs à texte blanc */
-button {
-    background-color: transparent;
-    border: 1px solid #fff;
-    color: #fff;
-    padding: 10px 20px;
-    margin: 10px 5px;
-    cursor: pointer;
-    transition: all 0.3s ease-in-out;
+table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    min-width: 600px;
 }
 
-button:hover {
-    background-color: #fff;
-    color: #111;
+.table thead tr {
+    background-color: #0d6efd;
 }
 
-/* Lien dans les boutons */
-button a {
-    color: inherit;
-    text-decoration: none;
-    font-weight: bold;
+.table th {
+    padding: 1.2rem 1.5rem;
+    text-align: left;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    color: white;
 }
 
-/* Section produits */
-.produits {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 30px;
-    margin-top: 20px;
+.table td {
+    padding: 1.2rem 1.5rem;
+    border-bottom: 1px solid #333;
+    color: #f0f0f0;
+    vertical-align: middle;
 }
 
-/* Carte produit */
-.produit-card {
-    border: 1px solid #555;
-    padding: 20px;
-    background-color: #1a1a1a;
-    transition: box-shadow 0.3s ease;
+.table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.table tbody tr:hover {
+    background-color: #2a2a2a;
+}
+
+.table tfoot tr {
+    background-color: #252525;
+}
+
+/* Boutons */
+.action-buttons {
     display: flex;
-    flex-direction: column;
-    gap: 10px;
-    color: #fff;
+    gap: 0.5rem;
+    flex-wrap: wrap;
 }
 
-.produit-card:hover {
-    box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+.btn {
+    padding: 0.6rem 1rem;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: all 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 36px;
 }
 
-/* Image produit */
-.produit-card img {
-    max-width: 100%;
-    height: auto;
-    border: 1px solid #444;
+.btn i {
+    margin-right: 0.3rem;
 }
 
-/* Lien Ajouter au panier */
-a[href*="cart_add"] {
-    display: inline-block;
-    margin-top: 10px;
-    background-color: transparent;
-    color: #fff;
-    padding: 8px 12px;
-    text-decoration: none;
-    transition: all 0.3s ease-in-out;
-    border: 1px solid #fff;
+.btn-success {
+    background-color: #28a745;
+    color: white;
 }
 
-a[href*="cart_add"]:hover {
-    background-color: #fff;
-    color: #111;
+.btn-warning {
+    background-color: #ffc107;
+    color: #212529;
+}
+
+.btn-danger {
+    background-color: #dc3545;
+    color: white;
+}
+
+.btn-primary {
+    background-color: #0d6efd;
+    color: white;
+    padding: 0.8rem 2rem;
+    font-size: 1rem;
+    border-radius: 8px;
+}
+
+.btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+    opacity: 0.95;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .container {
+        padding: 1.5rem 0.5rem;
+    }
+    
+    h1 {
+        font-size: 1.8rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    .table th, 
+    .table td {
+        padding: 1rem;
+    }
+    
+    .action-buttons {
+        flex-direction: column;
+        gap: 0.3rem;
+    }
+    
+    .btn {
+        width: 100%;
+        padding: 0.5rem;
+    }
 }
