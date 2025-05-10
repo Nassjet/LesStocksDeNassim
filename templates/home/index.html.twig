@@ -21,7 +21,9 @@
 							<img src="{{ asset('uploads/images/' ~ produit.image) }}" alt="{{ produit.name|e }}"/>
 						</a>
 					{% else %}
+					<a href="{{ path('app_produit_show', {'id': produit.id}) }}">
 						<p>Aucune image disponible</p>
+					</a>
 					{% endif %}
 				</div>
 				<div class="card-header">

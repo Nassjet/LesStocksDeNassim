@@ -1,0 +1,63 @@
+body {
+	background-color: #000;
+	color: #fff;
+	font-family: Arial, sans-serif;
+	margin: 0;
+	padding: 0;
+}
+
+h1 {
+	text-align: center;
+	margin-top: 50px;
+}
+
+form {
+	background-color: #111;
+	padding: 30px;
+	border-radius: 10px;
+	max-width: 500px;
+	margin: 40px auto;
+	box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
+}
+
+form div {
+	margin-bottom: 15px;
+}
+
+label {
+	display: block;
+	margin-bottom: 5px;
+	color: #ddd;
+}
+
+input[type="text"],
+textarea {
+	width: 100%;
+	padding: 10px;
+	border: 1px solid #444;
+	background-color: #222;
+	color: #fff;
+	border-radius: 5px;
+}
+
+button {
+	padding: 10px 20px;
+	background-color: #fff;
+	color: #000;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+    justify-content: center;
+}
+
+button:hover {
+	background-color: #ddd;
+}
+
+.btn-retour {
+	display: block;
+	text-align: center;
+	margin-top: 20px;
+	color: #fff;
+	text-decoration: underline;
+}
