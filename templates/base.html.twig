@@ -16,11 +16,15 @@
 
         <nav class="auth-links">
             {% if app.user %}
-                <span>Bonjour {{ app.user.name }} !</span>
+                <a href="{{ path('change_profil') }}">
+                    Bonjour {{ app.user.name }} !
+                </a>
                 <a href="{{ path('app_logout') }}">Déconnexion</a>
 
                 {% if is_granted('ROLE_ADMIN') %}
-                    <a href="{{ path('admin_dashboard') }}" class="admin-button">Dashboard Administrateur</a>
+                    <a href="{{ path('admin_dashboard') }}" class="admin-button">
+                        Dashboard Administrateur
+                    </a>
                 {% endif %}
             {% else %}
                 <a href="{{ path('app_login') }}">Connexion</a>
@@ -29,7 +33,10 @@
         </nav>
     </header>
 
-    {% block body %}{% endblock %}
+    <main>
+        {% block body %}{% endblock %}
+    </main>
+
     {% block javascripts %}{% endblock %}
 </body>
 </html>

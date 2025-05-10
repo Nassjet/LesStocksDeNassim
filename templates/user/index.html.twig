@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('styles/user/index.css') }}">
+{% endblock %}
+{% block title %}Modifier mon profil{% endblock %}
+
+{% block body %}
+    <h1>Modifier mon profil</h1>
+
+    {{ form_start(form) }}
+        {{ form_row(form.name) }}
+        {{ form_row(form.phoneNumber) }}
+        {{ form_row(form.email) }}
+        {{ form_row(form.password) }}
+        <button class="btn btn-primary">Enregistrer</button>
+    {{ form_end(form) }}
+{% endblock %}
