@@ -26,9 +26,9 @@
                     {% for element in data %}
                         <tr>
                             <td>{{ element.produit.name }}</td>
-                            <td>{{ element.produit.Prix / 100 }} €</td>
+                            <td>{{ element.produit.Prix}} €</td>
                             <td>{{ element.quantite }}</td>
-                            <td>{{ element.quantite * element.produit.Prix / 100 }} €</td>
+                            <td>{{ element.quantite * element.produit.Prix}} €</td>
                             <td>
                                 <a href="{{ path('cart_add', {id: element.produit.id}) }}" class="btn btn-success">+</a>
                                 <a href="{{ path('cart_remove', {id: element.produit.id}) }}" class="btn btn-warning">-</a>
@@ -44,7 +44,7 @@
                 <tfoot>
                     <tr>
                         <td colspan="3">Total</td>
-                        <td>{{ total / 100 }} €</td>
+                        <td>{{ total}} €</td>
                         {% if data != [] %}
                             <td>
                                 <a href="{{ path('cart_empty') }}" class="btn btn-danger">Vider</a>
