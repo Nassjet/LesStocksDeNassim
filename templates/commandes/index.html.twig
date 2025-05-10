@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('styles/commandes/index.css') }}">
+{% endblock %}
+
+{% block title %}Commande validée{% endblock %}
+
+{% block body %}
+    <h1>Merci pour votre commande !</h1>
+    <p>Votre numéro de commande est <strong>{{ commande.orderNumber }}</strong>.</p>
+{% endblock %}
